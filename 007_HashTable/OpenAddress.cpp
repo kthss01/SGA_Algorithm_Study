@@ -47,13 +47,18 @@ void OpenAddress::Set(vector<Node*>& nodes, KeyType key, ValueType value)
 	int addr = Hashing(key);
 	int step = Hashing2(key);
 
-
+	int cnt = 0;
 	while (nodes[addr] != NULL && nodes[addr]->State != Empty && nodes[addr]->Key != key)
 	{
 		cout << "面倒 Key : " << key << " Addr : " << addr;
 		cout << " Step : " << step << endl;
 
 		addr = (addr + step) % (int)nodes.size();
+		cnt++;
+		if (cnt >= nodes.size()) {
+			cnt = 0;
+			step--;
+		}
 	}
 	
 
@@ -67,9 +72,16 @@ OpenAddress::ValueType OpenAddress::Get(KeyType key)
 	int addr = Hashing(key);
 	int step = Hashing2(key);
 
-
-	while (nodes[addr]->State != Empty && nodes[addr]->Key != key)
+	int cnt = 0;
+	while (nodes[addr] == NULL && nodes[addr]->State != Empty && nodes[addr]->Key != key) {
 		addr = (addr + step) % (int)nodes.size();
+
+		cnt++;
+		if (cnt >= nodes.size()) {
+			cnt = 0;
+			step--;
+		}
+	}
 
 	return nodes[addr]->Value;
 }
@@ -97,13 +109,19 @@ int OpenAddress::Hashing2(KeyType key)
 	value = value % ((int)nodes.size() - 3);
 
 	return value + 1;
+
+	//for (size_t i = 0; i < key.size(); i++)
+	//	value = (value << 3) + key[i];
+
+	//value = value % ((int)nodes.size());
+
+	return value;
 }
 
 void OpenAddress::ReHashing()
 {
 	vector<Node *> re;
 	re.resize(nodes.size() * 2);
-	nodes.resize(re.size());
 
 	cout << "府秦教 : " << re.size() << endl;
 
@@ -112,14 +130,29 @@ void OpenAddress::ReHashing()
 		if (nodes[i] == NULL) continue;
 
 		if (nodes[i]->State == Occupied)
-			Set(re, nodes[i]->Key, nodes[i]->Value);
+		{
+			int addr = Hashing(nodes[i]->Key);
+			int step = Hashing2(nodes[i]->Key);
+
+			while (re[addr] != NULL && re[addr]->State != Empty && re[addr]->Key != nodes[i]->Key)
+			{
+				cout << "面倒 Key : " << nodes[i]->Key << " Addr : " << addr;
+				cout << " Step : " << step << endl;
+
+				addr = (addr + step) % (int)re.size();
+			}
+
+			re[addr] = nodes[i];
+		}
+
 	}
 
-	for (Node* node : nodes) {
-		if (node != NULL)
-			delete node;
-	}
+	//for (Node* node : nodes) {
+	//	if (node != NULL)
+	//		delete node;
+	//}
 
+	nodes.resize(re.size());
 	nodes.assign(re.begin(), re.end());
 }
 
