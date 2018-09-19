@@ -6,8 +6,7 @@ class RedBlackTree
 {
 private:
 	struct Node;
-	// enum class class 내에 소속된거라 전역이 아님
-	enum class Colors { Red = 0, Black };
+	enum class Colors { Red = 0, Black, };
 
 public:
 	RedBlackTree(int data)
@@ -28,9 +27,11 @@ public:
 		Node* node = new Node(data);
 		Insert(root, node);
 
-		node->Color = Colors::Red; // 처음 넣을때는 일단 Red Rebuild일 때 검증
+		node->Color = Colors::Red;
 		node->L = nil;
 		node->R = nil;
+
+		Print(root, 0, 0);
 
 		Rebuild(node);
 	}
@@ -62,7 +63,7 @@ private:
 		}
 	}
 
-	void RotateRight(Node* parent) 
+	void RotateRight(Node* parent)
 	{
 		Node* leftChild = parent->L;
 		parent->L = leftChild->R;
@@ -118,62 +119,53 @@ private:
 	{
 		while (node != root && node->P->Color == Colors::Red)
 		{
-			if (node->P == node->P->P->L)
+			bool bLeft = false;
+			bLeft = node->P == node->P->P->L;
+
+			Node* uncle = (bLeft == true) ? node->P->P->R : node->P->P->L;
+			// 삼촌이 레드일때
+			if (uncle->Color == Colors::Red)
 			{
-				Node* uncle = node->P->P->R;
-				// uncle이 Red일때는 Recoloring 
-				if (uncle->Color == Colors::Red)
-				{
-					node->P->Color = Colors::Black;
-					uncle->Color = Colors::Black;
-					node->P->P->Color = Colors::Red;
+				node->P->Color = Colors::Black;
+				uncle->Color = Colors::Black;
+				node->P->P->Color = Colors::Red;
 
-					node = node->P->P;
-				}
-				// uncle이 Black일때는 Restructuring
-				else
-				{
-					if (node == node->P->R)
-					{
-						node = node->P;
+				node = node->P->P;
 
-						RotateLeft(node);
-					}
-
-					node->P->Color = Colors::Black;
-					node->P->P->Color = Colors::Red;
-
-					RotateRight(node->P->P);
-				}
-			} // if(node->P)
-			else 
-			{
-				Node* uncle = node->P->P->L;
-				if (uncle->Color == Colors::Red)
-				{
-					node->P->Color = Colors::Black;
-					uncle->Color = Colors::Black;
-					node->P->P->Color = Colors::Red;
-
-					node = node->P->P;
-				}
-				else
-				{
-					if (node == node->P->L)
-					{
-						node = node->P;
-
-						RotateRight(node);
-					}
-
-					node->P->Color = Colors::Black;
-					node->P->P->Color = Colors::Red;
-
-					RotateLeft(node->P->P);
-				}
+				continue;
 			}
 
-		} // while(node)
+			// 삼촌이 블랙
+			// 내 부모가 Left Child인지
+			if (bLeft == true)
+			{
+				if (node == node->P->R)
+				{
+					node = node->P;
+
+					RotateLeft(node);
+				}
+
+				node->P->Color = Colors::Black;
+				node->P->P->Color = Colors::Red;
+
+				RotateRight(node->P->P);
+			}
+			// 내 부모가 Right Child인지
+			else
+			{
+				if (node == node->P->L)
+				{
+					node = node->P;
+					RotateRight(node);
+				}
+
+				node->P->Color = Colors::Black;
+				node->P->P->Color = Colors::Red;
+
+				RotateLeft(node->P->P);
+			}
+		}//while(node)
 
 		root->Color = Colors::Black;
 	}
@@ -188,8 +180,8 @@ private:
 	void Print(Node* node, int depth, int blackCount)
 	{
 		int i = 0;
-		char c = 'X'; // child인지 아닌지
-		int v = 0; // 부모의 data
+		char c = 'X';
+		int v = 0;
 
 		if (node == NULL || node == nil)
 			return;
@@ -208,14 +200,14 @@ private:
 		}
 
 		for (i = 0; i < depth; i++)
-			cout << " ";
+			cout << "  ";
 
 		cout << node->Data << "-" << c << " ";
 		cout << ((node->Color == Colors::Red) ? "Red" : "Black");
 		cout << " [" << v << "] " << "//" << depth << endl;
 
-		//if (node->L == nil && node->R == nil)
-		//	cout << "-------------- " << blackCount << endl;
+		/*if (node->L == nil && node->R == nil)
+		cout << "----------- " << blackCount << endl;*/
 
 		Print(node->L, depth + 1, blackCount);
 		Print(node->R, depth + 1, blackCount);
@@ -228,9 +220,9 @@ private:
 	{
 		int Data;
 
-		Node* P; // parent
-		Node* L; // left
-		Node* R; // right
+		Node* P;
+		Node* L;
+		Node* R;
 
 		Colors Color;
 
@@ -249,29 +241,38 @@ private:
 	};
 
 	Node* root;
+
 };
 
 void Print(int end)
 {
-
 	RedBlackTree* rbt = new RedBlackTree(1);
+
+	cout << "-----" << end << "-----" << endl;
 	for (int i = 2; i <= end; i++)
 		rbt->Insert(i);
 
-	cout << "-------" << end << "-------" << endl;
-
 	rbt->Print();
-
 	cout << endl;
-
 	delete rbt;
 }
 
 void main()
 {
-	Print(2);
+	/*Print(2);
 	Print(3);
 	Print(4);
 	Print(5);
-	Print(6);
+	Print(6);*/
+
+	RedBlackTree* rbt = new RedBlackTree(1);
+	rbt->Insert(2);
+	rbt->Insert(3);
+	rbt->Insert(4);
+
+	//RedBlackTree* rbt = new RedBlackTree(5);
+	//rbt->Insert(4);
+	//rbt->Insert(3);
+
+	rbt->Print();
 }
