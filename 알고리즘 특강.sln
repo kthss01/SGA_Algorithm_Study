@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "007_HashTable", "007_HashTa
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "008_Sort", "008_Sort\008_Sort.vcxproj", "{1DEA8680-D069-495C-BB7A-5583165EDED3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "009_Graph", "009_Graph\009_Graph.vcxproj", "{85281208-FA7A-4E9C-B30E-49A3A14621FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -111,6 +113,14 @@ Global
 		{1DEA8680-D069-495C-BB7A-5583165EDED3}.Release|x64.Build.0 = Release|x64
 		{1DEA8680-D069-495C-BB7A-5583165EDED3}.Release|x86.ActiveCfg = Release|Win32
 		{1DEA8680-D069-495C-BB7A-5583165EDED3}.Release|x86.Build.0 = Release|Win32
+		{85281208-FA7A-4E9C-B30E-49A3A14621FE}.Debug|x64.ActiveCfg = Debug|x64
+		{85281208-FA7A-4E9C-B30E-49A3A14621FE}.Debug|x64.Build.0 = Debug|x64
+		{85281208-FA7A-4E9C-B30E-49A3A14621FE}.Debug|x86.ActiveCfg = Debug|Win32
+		{85281208-FA7A-4E9C-B30E-49A3A14621FE}.Debug|x86.Build.0 = Debug|Win32
+		{85281208-FA7A-4E9C-B30E-49A3A14621FE}.Release|x64.ActiveCfg = Release|x64
+		{85281208-FA7A-4E9C-B30E-49A3A14621FE}.Release|x64.Build.0 = Release|x64
+		{85281208-FA7A-4E9C-B30E-49A3A14621FE}.Release|x86.ActiveCfg = Release|Win32
+		{85281208-FA7A-4E9C-B30E-49A3A14621FE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
