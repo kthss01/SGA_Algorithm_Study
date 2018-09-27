@@ -15,27 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Graph.h">
+    <ClInclude Include="Disjoint.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TopologicalGraph.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="MST.h">
+    <ClInclude Include="Priority.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Graph.cpp">
+    <ClCompile Include="Disjoint.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TopologicalGraph.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MST.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Disjoint.h">
+    <ClCompile Include="Priority.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
