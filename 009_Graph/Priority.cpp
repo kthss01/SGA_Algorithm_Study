@@ -1,5 +1,5 @@
+#include <windows.h>
 #include "Priority.h"
-#include <Windows.h>
 
 PriorityQueue * CreateQueue(int size)
 {
@@ -13,11 +13,11 @@ PriorityQueue * CreateQueue(int size)
 
 void DestroyQueue(PriorityQueue * queue)
 {
-	delete[] queue->Nodes;
+	delete [] queue->Nodes;
 	delete queue;
 }
 
-void Enqueue(PriorityQueue * queue, QueueNode node)
+void Enqueue(PriorityQueue * queue, QueueNode data)
 {
 	int currentPos = queue->UsedSize;
 	int parentPos = GetParentQueueNode(currentPos);
@@ -29,12 +29,16 @@ void Enqueue(PriorityQueue * queue, QueueNode node)
 
 		queue->Capacity *= 2;
 		
-		delete[] queue->Nodes;
-		queue->Nodes = new QueueNode[queue->Capacity];
-	}
+		//delete [] queue->Nodes;
+		//queue->Nodes = new QueueNode[queue->Capacity];
 
-	while (currentPos > 0 
-		&& queue->Nodes[currentPos].Priority < queue->Nodes[parentPos].Priority)
+		// malloc 유사한데 공간 재할당하는데 기존 데이터 유지됨
+		queue->Nodes = (QueueNode *)realloc(queue->Nodes, sizeof(QueueNode) * queue->Capacity);
+	}
+		
+	queue->Nodes[currentPos] = data;
+
+	while (currentPos > 0 && queue->Nodes[currentPos].Priority < queue->Nodes[parentPos].Priority)
 	{
 		SwapQueueNodes(queue, currentPos, parentPos);
 
@@ -52,9 +56,8 @@ void Dequeue(PriorityQueue * queue, QueueNode * node)
 
 	memcpy(node, &queue->Nodes[0], sizeof(QueueNode));
 	ZeroMemory(&queue->Nodes[0], sizeof(QueueNode));
-	
-	queue->UsedSize--;
 
+	queue->UsedSize--;
 	SwapQueueNodes(queue, 0, queue->UsedSize);
 
 	left = GetLeftChildQueue(0);
@@ -81,7 +84,7 @@ void Dequeue(PriorityQueue * queue, QueueNode * node)
 
 		if (queue->Nodes[select].Priority < queue->Nodes[parent].Priority)
 		{
-			SwapQueueNodes(queue, select, parent);
+			SwapQueueNodes(queue, parent, select);
 			parent = select;
 		}
 		else
@@ -95,8 +98,10 @@ void Dequeue(PriorityQueue * queue, QueueNode * node)
 	{
 		queue->Capacity /= 2;
 		
-		delete[] queue->Nodes;
-		queue->Nodes = new QueueNode[queue->Capacity];
+		//delete [] queue->Nodes;
+		//queue->Nodes = new QueueNode[queue->Capacity];
+
+		queue->Nodes = (QueueNode *)realloc(queue->Nodes, sizeof(QueueNode) * queue->Capacity);
 	}
 }
 

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Rect.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Keyboard.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Device.h">
+      <Filter>System</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprite.hlsl">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="Rect.hlsl">
+      <Filter>Render</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="System">
+      <UniqueIdentifier>{b5092bea-37d8-4c8e-81b0-7e0eef49bcc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{bbcfc6bd-d73b-4e54-a324-f5a2e93be5a7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

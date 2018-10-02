@@ -19,12 +19,24 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Disjoint.h" />
-    <ClInclude Include="Priority.h" />
+    <ClCompile Include="Disjoint.cpp" />
+    <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="LinkedList.cpp" />
+    <ClCompile Include="MST.cpp" />
+    <ClCompile Include="MST_Main.cpp" />
+    <ClCompile Include="Priority.cpp" />
+    <ClCompile Include="TopologicalSort.cpp" />
+    <ClCompile Include="TopologicalSort_Main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Disjoint.cpp" />
-    <ClCompile Include="Priority.cpp" />
+    <ClInclude Include="Disjoint.h" />
+    <ClInclude Include="Graph.h" />
+    <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="MST.h" />
+    <ClInclude Include="Priority.h" />
+    <ClInclude Include="TopologicalSort.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{85281208-FA7A-4E9C-B30E-49A3A14621FE}</ProjectGuid>
