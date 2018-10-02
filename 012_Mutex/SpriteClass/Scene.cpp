@@ -35,10 +35,14 @@ void LoadSprite()
 thread t2;
 mutex m2;
 int value = 0;
+bool bExit = false;
 void Add()
 {
 	for(int i=0; i<10000; i++) 
 	{
+		if (bExit)
+			break;
+
 		m2.lock();
 		value++;
 		m2.unlock();
@@ -48,12 +52,12 @@ void Add()
 }
 
 void InitScene()
-{	
+{
 	rect = new Rect();
 	rect->Position(0, 200);
 	rect->Scale(300, 100);
 	rect->Color(0, 1, 0, 1);
-	
+
 	t2 = thread(Add);
 	// ¶÷´Ù½Ä
 	//t2 = thread([&]()
@@ -71,7 +75,10 @@ void InitScene()
 
 void DestroyScene()
 {
-	t2.join();
+	if (bExit == false) {
+		bExit = true;
+		t2.join();
+	}
 
 	SAFE_DELETE(rect);
 	SAFE_DELETE(sprite);
@@ -89,6 +96,7 @@ void Update()
 	}
 
 	if (Key->Down(VK_RETURN)) {
+		bExit = true;
 		t2.join();
 	}
 
@@ -103,7 +111,7 @@ void Update()
 
 	if (temp == true) {
 		if (bJoin == false) {
-			t.join();
+			//t.join();
 
 			bJoin = true;
 		}
