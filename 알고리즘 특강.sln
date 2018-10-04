@@ -31,6 +31,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "011_Thread", "011_Thread\01
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Direct2D", "012_Mutex\SpriteClass\Direct2D.vcxproj", "{3890D43C-DBC5-4F00-A51E-C2C6A0160A32}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "012_DynamicPlanning", "012_DynamicPlanning\012_DynamicPlanning.vcxproj", "{5071C405-5A64-4623-82D0-F12B52E4BD32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -151,6 +153,14 @@ Global
 		{3890D43C-DBC5-4F00-A51E-C2C6A0160A32}.Release|x64.Build.0 = Release|x64
 		{3890D43C-DBC5-4F00-A51E-C2C6A0160A32}.Release|x86.ActiveCfg = Release|Win32
 		{3890D43C-DBC5-4F00-A51E-C2C6A0160A32}.Release|x86.Build.0 = Release|Win32
+		{5071C405-5A64-4623-82D0-F12B52E4BD32}.Debug|x64.ActiveCfg = Debug|x64
+		{5071C405-5A64-4623-82D0-F12B52E4BD32}.Debug|x64.Build.0 = Debug|x64
+		{5071C405-5A64-4623-82D0-F12B52E4BD32}.Debug|x86.ActiveCfg = Debug|Win32
+		{5071C405-5A64-4623-82D0-F12B52E4BD32}.Debug|x86.Build.0 = Debug|Win32
+		{5071C405-5A64-4623-82D0-F12B52E4BD32}.Release|x64.ActiveCfg = Release|x64
+		{5071C405-5A64-4623-82D0-F12B52E4BD32}.Release|x64.Build.0 = Release|x64
+		{5071C405-5A64-4623-82D0-F12B52E4BD32}.Release|x86.ActiveCfg = Release|Win32
+		{5071C405-5A64-4623-82D0-F12B52E4BD32}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
