@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5071C405-5A64-4623-82D0-F12B52E4BD32}</ProjectGuid>
+    <ProjectGuid>{4D40191E-1A23-475A-B6A8-3A5417722033}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My012_DynamicPlanning</RootNamespace>
+    <RootNamespace>My013_Greedy</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -142,17 +142,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Fibonacci.cpp">
+    <ClCompile Include="ActivationSelect.cpp" />
+    <ClCompile Include="CoinChange.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="LcsDp.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\012_TestLib\012_TestLib.vcxproj">
-      <Project>{64838f2c-1d00-4853-b4bc-7b86dd744899}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

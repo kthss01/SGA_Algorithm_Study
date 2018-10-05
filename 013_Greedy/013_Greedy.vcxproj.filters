@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Fibonacci.cpp">
+    <ClCompile Include="CoinChange.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="LcsDp.cpp">
+    <ClCompile Include="ActivationSelect.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

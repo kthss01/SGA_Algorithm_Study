@@ -15,10 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Fibonacci.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="LcsDp.cpp">
+    <ClCompile Include="..\012_DynamicPlanning\Lcs.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

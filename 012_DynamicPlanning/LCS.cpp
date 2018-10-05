@@ -1,5 +1,6 @@
 #include <cstdio>
-#include <cstring>
+#include <string>
+using namespace std;
 
 struct LCSTable
 {
@@ -8,63 +9,28 @@ struct LCSTable
 
 int LCS(char* x, char* y, int i, int j, LCSTable* table)
 {
-	int m = 0, n = 0;
-
-	for (m = 0; m <= i; m++)
-		table->Data[m][0] = 0;
-	for (n = 0; n <= j; n++)
-		table->Data[0][n] = 0;
-
-	for (m = 1; m <= i; m++)
+	if (i == 0 || j == 0)
 	{
-		for (n = 1; n <= j; n++) 
-		{
-			if (x[m - 1] == y[n - 1])
-			{
-				table->Data[m][n] = table->Data[m - 1][n - 1] + 1;
-			}
-			else
-			{
-				if (table->Data[m][n - 1] >= table->Data[m - 1][n])
-					table->Data[m][n] = table->Data[m][n - 1];
-				else
-					table->Data[m][n] = table->Data[m - 1][n];
-			}
-		} // for(n)
-	} // for(m)
+		table->Data[i][j] = 0;
 
-	return table->Data[i][j];
-}
-
-void TraceBack(char* x, char* y, int m, int n, LCSTable* table, char* lcs)
-{
-	if (m == 0 || n == 0)
-		return;
-
-	bool b = true;
-	b &= table->Data[m][n] > table->Data[m][n - 1];
-	b &= table->Data[m][n] > table->Data[m - 1][n];
-	b &= table->Data[m][n] > table->Data[m - 1][n - 1];
-
-	bool c = true;
-	c &= table->Data[m][n] > table->Data[m][n - 1];
-	c &= table->Data[m][n] > table->Data[m - 1][n];
-
-	if (b == true)
-	{
-		char temp[100];
-		strcpy(temp, lcs);
-		sprintf(lcs, "%c%s", x[m - 1], temp);
-
-		TraceBack(x, y, m - 1, n - 1, table, lcs);
+		return table->Data[i][j];
 	}
-	else if (c == true)
+	else if (x[i - 1] == y[j - 1])
 	{
-		TraceBack(x, y, m, n - 1, table, lcs);
+		table->Data[i][j] = LCS(x, y, i - 1, j - 1, table) + 1;
+
+		return table->Data[i][j];
 	}
-	else
-	{
-		TraceBack(x, y, m - 1, n, table, lcs);
+	else {
+		int a = LCS(x, y, i - 1, j, table);
+		int b = LCS(x, y, i, j - 1, table);
+
+		if (a > b)
+			table->Data[i][j] = a;
+		else
+			table->Data[i][j] = b;
+
+		return table->Data[i][j];
 	}
 }
 
@@ -109,12 +75,4 @@ void main()
 
 	int length = LCS(x, y, lenX, lenY, &table);
 	Print(&table, x, y, lenX, lenY);
-
-	char* result = new char[lenX * lenY + 1];
-	sprintf(result, "");
-
-	TraceBack(x, y, lenX, lenY, &table, result);
-
-	printf("\n");
-	printf("LCS:\"%s\" (Length:%d)\n", result, length);
 }
